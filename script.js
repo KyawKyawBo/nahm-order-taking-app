@@ -4,6 +4,7 @@ const selectedItems = document.getElementById('selected-items');
 const quantityModal = document.getElementById('quantityModal');
 const quantityInput = document.getElementById('quantityInput');
 const addToCartBtn = document.getElementById('addToCartBtn');
+const remarkInput = document.getElementById('remarkInput');
 let selectedItem = null;
 
 // Function to fetch food items from the database
@@ -44,12 +45,16 @@ function showSuggestions(searchTerm) {
         // Add click event listener to select items
         listItem.addEventListener('click', () => {
             selectedItem = item;
+            document.getElementById('selectedItemName').textContent = selectedItem.name;
             quantityInput.value = '1';
+            remarkInput.value = ''; // Clear remark input
             quantityModal.classList.add('show');
             quantityModal.style.display = 'block';
             searchInput.value = ''; // Clear search text
             suggestionList.innerHTML = ''; // Close suggestion list
         });
+
+
     });
 }
 
@@ -80,10 +85,29 @@ document.getElementById('minusBtn').addEventListener('click', () => {
 // Event listener for add to cart button in the modal
 addToCartBtn.addEventListener('click', () => {
     const quantity = parseInt(quantityInput.value);
+    const remark = remarkInput.value;
+
     const selected = document.createElement('li');
     selected.className = 'list-group-item';
-    selected.textContent = `${selectedItem.name} (Qty: ${quantity})`;
+    selected.innerHTML = `${selectedItem.name} (Qty: ${quantity})`;
+
+    if (remark.trim() !== '') {
+        const remarkSpan = document.createElement('span');
+        remarkSpan.className = 'remark';
+        remarkSpan.textContent = remark;
+        selected.appendChild(remarkSpan);
+    }
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'btn btn-link delete-item';
+    deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
+    deleteBtn.addEventListener('click', () => {
+        selectedItems.removeChild(selected);
+    });
+
+    selected.appendChild(deleteBtn);
     selectedItems.appendChild(selected);
+
     quantityModal.classList.remove('show');
     quantityModal.style.display = 'none';
 });

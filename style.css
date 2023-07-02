@@ -45,3 +45,8 @@ h1,
 h2 {
     text-align: center;
 }
+
+.remark {
+    color: red;
+    margin-left: 10px;
+}
