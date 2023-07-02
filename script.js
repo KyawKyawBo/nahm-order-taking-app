@@ -8,22 +8,22 @@ let selectedItem = null;
 
 // Function to fetch food items from the database
 function fetchFoodItems() {
-  return new Promise((resolve, reject) => {
-    fetch('fetch_food_items.php') // Modify the URL based on your server setup
-      .then(response => response.json())
-      .then(data => resolve(data))
-      .catch(error => reject(error));
-  });
+    return new Promise((resolve, reject) => {
+        fetch('fetch_food_items.php') // Modify the URL based on your server setup
+            .then(response => response.json())
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+    });
 }
 
 // Fetch food items from the database
 fetchFoodItems()
-  .then(data => {
-    menuItems = data;
-  })
-  .catch(error => {
-    console.error('Error fetching food items:', error);
-  });
+    .then(data => {
+        menuItems = data;
+    })
+    .catch(error => {
+        console.error('Error fetching food items:', error);
+    });
 
 // Function to display suggestions based on search input
 function showSuggestions(searchTerm) {
