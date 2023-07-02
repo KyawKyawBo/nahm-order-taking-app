@@ -1,0 +1,8 @@
+{
+    "name": "nahm-order-taking-app",
+    "require": {
+      "php": "^7.4 || ^8.0",
+      "guzzlehttp/guzzle": "^7.0"
+    }
+  }
+  
