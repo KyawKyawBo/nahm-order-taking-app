@@ -23,12 +23,12 @@ if (isset($_POST['name']) && isset($_POST['category']) && isset($_POST['price'])
         // Close the statement
         $stmt->close();
         // Redirect back to the food items page
-        header("Location: index.php");
+        header("Location: dashboard.php");
         exit();
     }
 } else {
     // If form data is not submitted, redirect back to the food items page
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit();
 }
 ?>

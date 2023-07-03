@@ -11,11 +11,11 @@ if (isset($_GET['id'])) {
     // Close the statement
     $stmt->close();
     // Redirect back to the food items page
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit();
 } else {
     // If no item ID is provided, redirect back to the food items page
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit();
 }
 ?>

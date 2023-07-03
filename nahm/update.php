@@ -14,11 +14,11 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['category']) &&
     // Close the statement
     $stmt->close();
     // Redirect back to the food items page
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit();
 } else {
-    // If form data is not submitted, redirect back to the food items page
-    header("Location: index.php");
+    // If form data is not submitted or any required field is missing, redirect back to the food items page
+    header("Location: dashboard.php");
     exit();
 }
 ?>
