@@ -28,27 +28,35 @@ fetchFoodItems()
 // Function to display categories
 function showCategories() {
     const categories = [
-        'Fast Cook',
-        'Medium Cook',
-        'Long Cook',
-        'Cocktail',
-        'Beer & Cider',
-        'Spirits',
-        'Sodas & Juices',
-        'Water',
-        'DIGESTIVES',
-        'Wine',
-        'Sweets',
-        'Coffee & Tea',
-        'Juice'
+        { name: 'Fast Cook', icon: 'fas fa-utensils' },
+        { name: 'Medium Cook', icon: 'fas fa-utensil-spoon' },
+        { name: 'Long Cook', icon: 'fas fa-hourglass-start' },
+        { name: 'Cocktail', icon: 'fas fa-cocktail' },
+        { name: 'Beer & Cider', icon: 'fas fa-beer' },
+        { name: 'Spirits', icon: 'fas fa-wine-bottle' },
+        { name: 'Sodas & Juices', icon: 'fas fa-glass-whiskey' },
+        { name: 'Water', icon: 'fas fa-glass-whiskey' },
+        { name: 'DIGESTIVES', icon: 'fas fa-glass-whiskey' },
+        { name: 'Wine', icon: 'fas fa-wine-glass' },
+        { name: 'Sweets', icon: 'fas fa-candy-cane' },
+        { name: 'Coffee & Tea', icon: 'fas fa-coffee' },
+        { name: 'Juice', icon: 'fas fa-glass-whiskey' }
     ];
+
     categories.forEach(category => {
         const categorySection = document.createElement('div');
         categorySection.className = 'category-section';
-        categorySection.innerHTML = `<h3>${category}</h3><ul id="${category}" class="list-group"></ul>`;
+        categorySection.innerHTML = `
+            <h3>
+                <i class="${category.icon}"></i>
+                ${category.name}
+            </h3>
+            <ul id="${category.name}" class="list-group"></ul>
+        `;
         categoryList.appendChild(categorySection);
     });
 }
+
 function showSuggestions(searchTerm) {
     suggestionList.innerHTML = '';
     // Filter menuItems based on search term
@@ -137,6 +145,12 @@ addToCartBtn.addEventListener('click', () => {
     if (categoryList) {
         categoryList.appendChild(selected);
     }
+    quantityModal.classList.remove('show');
+    quantityModal.style.display = 'none';
+});
+
+// Event listener for close button in the modal
+closeModal.addEventListener('click', () => {
     quantityModal.classList.remove('show');
     quantityModal.style.display = 'none';
 });
