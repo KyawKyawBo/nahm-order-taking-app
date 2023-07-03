@@ -1,0 +1,48 @@
+Date : 2023-07-03 19:15:40
+Directory : c:\xampp\htdocs\order-taking-app
+Total : 18 files,  648 codes, 76 comments, 28 blanks, all 752 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| PHP        |         11 |        362 |         49 |         15 |        426 |
+| JavaScript |          4 |        221 |         26 |          9 |        256 |
+| HTML       |          1 |         56 |          1 |          3 |         60 |
+| JSON       |          1 |          7 |          0 |          0 |          7 |
+| Markdown   |          1 |          2 |          0 |          1 |          3 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                  | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                     |         18 |        648 |         76 |         28 |        752 |
+| . (Files)                                             |          5 |        224 |         20 |          6 |        250 |
+| nahm                                                  |         13 |        424 |         56 |         22 |        502 |
++-------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                              | language   | code       | comment    | blank      | total      |
++-------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\xampp\htdocs\order-taking-app\README.md            | Markdown   |          2 |          0 |          1 |          3 |
+| c:\xampp\htdocs\order-taking-app\composer.json        | JSON       |          7 |          0 |          0 |          7 |
+| c:\xampp\htdocs\order-taking-app\fetch_food_items.php | PHP        |         20 |          6 |          0 |         26 |
+| c:\xampp\htdocs\order-taking-app\index.html           | HTML       |         56 |          1 |          3 |         60 |
+| c:\xampp\htdocs\order-taking-app\nahm\check-script.js | JavaScript |         37 |          4 |          1 |         42 |
+| c:\xampp\htdocs\order-taking-app\nahm\check.php       | PHP        |          7 |          2 |          1 |         10 |
+| c:\xampp\htdocs\order-taking-app\nahm\check_name.php  | PHP        |         19 |          4 |          0 |         23 |
+| c:\xampp\htdocs\order-taking-app\nahm\connection.php  | PHP        |          9 |          3 |          0 |         12 |
+| c:\xampp\htdocs\order-taking-app\nahm\create.php      | PHP        |         26 |          8 |          0 |         34 |
+| c:\xampp\htdocs\order-taking-app\nahm\dashboard.php   | PHP        |        167 |          5 |          0 |        172 |
+| c:\xampp\htdocs\order-taking-app\nahm\delete.php      | PHP        |         15 |          6 |          0 |         21 |
+| c:\xampp\htdocs\order-taking-app\nahm\index.php       | PHP        |         59 |          1 |          7 |         67 |
+| c:\xampp\htdocs\order-taking-app\nahm\logout.js       | JavaScript |         12 |          3 |          5 |         20 |
+| c:\xampp\htdocs\order-taking-app\nahm\logout.php      | PHP        |          6 |          2 |          3 |         11 |
+| c:\xampp\htdocs\order-taking-app\nahm\script.js       | JavaScript |         33 |          6 |          1 |         40 |
+| c:\xampp\htdocs\order-taking-app\nahm\update.php      | PHP        |         18 |          6 |          0 |         24 |
+| c:\xampp\htdocs\order-taking-app\nahm\verify.php      | PHP        |         16 |          6 |          4 |         26 |
+| c:\xampp\htdocs\order-taking-app\script.js            | JavaScript |        139 |         13 |          2 |        154 |
+| Total                                                 |            |        648 |         76 |         28 |        752 |
++-------------------------------------------------------+------------+------------+------------+------------+------------+
