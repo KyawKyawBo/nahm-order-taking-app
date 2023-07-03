@@ -42,7 +42,6 @@ function showCategories() {
         { name: 'Coffee & Tea', icon: 'fas fa-coffee' },
         { name: 'Juice', icon: 'fas fa-glass-whiskey' }
     ];
-
     categories.forEach(category => {
         const categorySection = document.createElement('div');
         categorySection.className = 'category-section';
@@ -56,7 +55,6 @@ function showCategories() {
         categoryList.appendChild(categorySection);
     });
 }
-
 function showSuggestions(searchTerm) {
     suggestionList.innerHTML = '';
     // Filter menuItems based on search term
@@ -138,7 +136,6 @@ addToCartBtn.addEventListener('click', () => {
         event.stopPropagation(); // Prevent the click event from bubbling up
         selected.parentElement.removeChild(selected);
     });
-
     selected.appendChild(deleteBtn);
     // Find the relevant category and append the selected item
     const categoryList = document.getElementById(selectedItem.category);
@@ -148,9 +145,9 @@ addToCartBtn.addEventListener('click', () => {
     quantityModal.classList.remove('show');
     quantityModal.style.display = 'none';
 });
-
 // Event listener for close button in the modal
 closeModal.addEventListener('click', () => {
     quantityModal.classList.remove('show');
     quantityModal.style.display = 'none';
 });
+
