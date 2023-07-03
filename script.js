@@ -1,12 +1,12 @@
 const searchInput = document.getElementById('search-input');
 const suggestionList = document.getElementById('suggestion-list');
+const categoryList = document.getElementById('category-list');
 const selectedItems = document.getElementById('selected-items');
 const quantityModal = document.getElementById('quantityModal');
 const quantityInput = document.getElementById('quantityInput');
 const addToCartBtn = document.getElementById('addToCartBtn');
 const remarkInput = document.getElementById('remarkInput');
 let selectedItem = null;
-
 // Function to fetch food items from the database
 function fetchFoodItems() {
     return new Promise((resolve, reject) => {
@@ -16,64 +16,93 @@ function fetchFoodItems() {
             .catch(error => reject(error));
     });
 }
-
 // Fetch food items from the database
 fetchFoodItems()
     .then(data => {
         menuItems = data;
+        showCategories();
     })
     .catch(error => {
         console.error('Error fetching food items:', error);
     });
-
-// Function to display suggestions based on search input
+// Function to display categories
+function showCategories() {
+    const categories = [
+        'Fast Cook',
+        'Medium Cook',
+        'Long Cook',
+        'Cocktail',
+        'Beer & Cider',
+        'Spirits',
+        'Sodas & Juices',
+        'Water',
+        'DIGESTIVES',
+        'Wine',
+        'Sweets',
+        'Coffee & Tea',
+        'Juice'
+    ];
+    categories.forEach(category => {
+        const categorySection = document.createElement('div');
+        categorySection.className = 'category-section';
+        categorySection.innerHTML = `<h3>${category}</h3><ul id="${category}" class="list-group"></ul>`;
+        categoryList.appendChild(categorySection);
+    });
+}
 function showSuggestions(searchTerm) {
     suggestionList.innerHTML = '';
-
     // Filter menuItems based on search term
     const filteredItems = menuItems.filter(item =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
-    // Create suggestion list items
+    // Create suggestion list items grouped by category
+    const groupedItems = {};
     filteredItems.forEach(item => {
-        const listItem = document.createElement('li');
-        listItem.className = 'list-group-item';
-        listItem.textContent = item.name;
-        suggestionList.appendChild(listItem);
-
-        // Add click event listener to select items
-        listItem.addEventListener('click', () => {
-            selectedItem = item;
-            document.getElementById('selectedItemName').textContent = selectedItem.name;
-            quantityInput.value = '1';
-            remarkInput.value = ''; // Clear remark input
-            quantityModal.classList.add('show');
-            quantityModal.style.display = 'block';
-            searchInput.value = ''; // Clear search text
-            suggestionList.innerHTML = ''; // Close suggestion list
-        });
-
-
+        if (groupedItems.hasOwnProperty(item.category)) {
+            groupedItems[item.category].push(item);
+        } else {
+            groupedItems[item.category] = [item];
+        }
     });
+    // Create suggestion list items with category headers
+    for (const category in groupedItems) {
+        const categoryItem = document.createElement('li');
+        categoryItem.className = 'list-group-item list-group-item-secondary fw-bold';
+        categoryItem.textContent = category;
+        suggestionList.appendChild(categoryItem);
+        const items = groupedItems[category];
+        items.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.className = 'list-group-item';
+            listItem.textContent = item.name;
+            suggestionList.appendChild(listItem);
+            // Add click event listener to select items
+            listItem.addEventListener('click', () => {
+                selectedItem = item;
+                document.getElementById('selectedItemName').textContent = selectedItem.name;
+                quantityInput.value = '1';
+                remarkInput.value = ''; // Clear remark input
+                quantityModal.classList.add('show');
+                quantityModal.style.display = 'block';
+                searchInput.value = ''; // Clear search text
+                suggestionList.innerHTML = ''; // Close suggestion list
+            });
+        });
+    }
 }
-
 // Event listener for search input
 searchInput.addEventListener('input', e => {
     const searchTerm = e.target.value;
     suggestionList.innerHTML = ''; // Clear suggestion list
-
     if (searchTerm.trim() !== '') {
         showSuggestions(searchTerm);
     }
 });
-
 // Event listener for plus button
 document.getElementById('plusBtn').addEventListener('click', () => {
     const quantity = parseInt(quantityInput.value);
     quantityInput.value = quantity + 1;
 });
-
 // Event listener for minus button
 document.getElementById('minusBtn').addEventListener('click', () => {
     const quantity = parseInt(quantityInput.value);
@@ -81,33 +110,33 @@ document.getElementById('minusBtn').addEventListener('click', () => {
         quantityInput.value = quantity - 1;
     }
 });
-
 // Event listener for add to cart button in the modal
 addToCartBtn.addEventListener('click', () => {
     const quantity = parseInt(quantityInput.value);
     const remark = remarkInput.value;
-
     const selected = document.createElement('li');
     selected.className = 'list-group-item';
     selected.innerHTML = `${selectedItem.name} (Qty: ${quantity})`;
-
     if (remark.trim() !== '') {
         const remarkSpan = document.createElement('span');
-        remarkSpan.className = 'remark';
+        remarkSpan.className = 'remark text-danger';
         remarkSpan.textContent = remark;
         selected.appendChild(remarkSpan);
     }
-
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'btn btn-link delete-item';
     deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
-    deleteBtn.addEventListener('click', () => {
-        selectedItems.removeChild(selected);
+    deleteBtn.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent the click event from bubbling up
+        selected.parentElement.removeChild(selected);
     });
 
     selected.appendChild(deleteBtn);
-    selectedItems.appendChild(selected);
-
+    // Find the relevant category and append the selected item
+    const categoryList = document.getElementById(selectedItem.category);
+    if (categoryList) {
+        categoryList.appendChild(selected);
+    }
     quantityModal.classList.remove('show');
     quantityModal.style.display = 'none';
 });
